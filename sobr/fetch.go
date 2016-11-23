@@ -65,8 +65,13 @@ func Fetch(options Options) (*os.File, string,string){
 		page.Find("#email").SendKeys(options.Username)
 		page.Find("#password").SendKeys(options.Password)
 		fmt.Println("SendKeys.Click()")
-		fmt.Println("button click text:", page.Find("#login-form > div.item-list > div.item-small > button").Text())
-		page.Find("#login-form > div.item-list > div.item-small > button").Click()
+		btnLogin := page.Find("#login-form > div.item-list > div.item-small > button")
+		btnText, _ := btnLogin.Text()
+		if(btnLogin != nil && btnText != ""){
+			fmt.Println("button click text:", btnText)
+			btnLogin.Click()
+		}
+
     delaySecond(5)
 		loopLoadMore(page)
 		data, _ := page.HTML()
