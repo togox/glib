@@ -33,9 +33,7 @@ func clickLoadMore(page *agouti.Page) {
 func loopLoadMore(page *agouti.Page){
 	clickLoadMore(page)
 	delaySecond(2)
-	loadMore := page.Find(".show-more-button")
-
-
+	loadMore := page.Find("body > div.page > div.content > div > section > section > div > table > tbody > tr.replace-with-show-more > td > div > a")
 	if (loadMore != nil) {
 		  text, _ := loadMore.Text()
 			fmt.Println("loadMore Text:", text)
@@ -59,13 +57,14 @@ func Fetch(options Options) (*os.File, string,string){
 		if err != nil {
 			fmt.Println("Failed to navigate:", err)
 		} else {
-			fmt.Println("stawrt")
+			fmt.Println("start.....")
 		}
-
+    fmt.Println("start.....page.Find(body > div.page > header > div.in > div > a.btn.fb.sub).Click()")
 		page.Find("body > div.page > header > div.in > div > a.btn.fb.sub").Click();
-
+    fmt.Println("SendKeys.Click()")
 		page.Find("#email").SendKeys(options.Username)
 		page.Find("#password").SendKeys(options.Password)
+		fmt.Println("SendKeys.Click()")
 		page.Find("#login-form > div.item-list > div.item-small > button").Click()
 		loopLoadMore(page)
 		data, _ := page.HTML()
