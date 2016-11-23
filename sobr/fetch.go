@@ -65,7 +65,7 @@ func Fetch(options Options) (*os.File, string,string){
 		page.Find("body > div.page > header > div.in > div > a.btn.fb.sub").Click();
 
 		page.Find("#email").SendKeys(options.Username)
-		page.Find("##password").SendKeys(options.Password)
+		page.Find("#password").SendKeys(options.Password)
 		page.Find("#login-form > div.item-list > div.item-small > button").Click()
 		loopLoadMore(page)
 		data, _ := page.HTML()
