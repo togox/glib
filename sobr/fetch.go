@@ -61,11 +61,11 @@ func Fetch(options Options) (*os.File, string,string){
 		} else {
 			fmt.Println("stawrt")
 		}
-		page.Find("body > div.page > header > div.in > div > a.btn.fb.sub").Click();
-		page.Find("body > div > section > div > div > div > div.item-list > div.item-big > a").Click();
+	//	page.Find("body > div.page > header > div.in > div > a.btn.fb.sub").Click();
+
 		page.Find("#email").SendKeys(options.Username)
-		page.Find("#pass").SendKeys(options.Password)
-		page.Find("#loginbutton").Click()
+		page.Find("##password").SendKeys(options.Password)
+		page.Find("#login-form > div.item-list > div.item-small > button").Click()
 		loopLoadMore(page)
 		data, _ := page.HTML()
 		html := []byte(data)
