@@ -61,7 +61,8 @@ func Fetch(options Options) (*os.File, string,string){
 		} else {
 			fmt.Println("stawrt")
 		}
-	//	page.Find("body > div.page > header > div.in > div > a.btn.fb.sub").Click();
+
+		page.Find("body > div.page > header > div.in > div > a.btn.fb.sub").Click();
 
 		page.Find("#email").SendKeys(options.Username)
 		page.Find("##password").SendKeys(options.Password)
