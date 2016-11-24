@@ -27,16 +27,19 @@ func delaySecond(n time.Duration) {
 func clickLoadMore(page *agouti.Page) {
 	loadMoreButton := page.Find(".show-more-button");
 	if (loadMoreButton != nil) {
-		 loadMoreButton.Click();
+		 text, _ := loadMore.Text()
+		 if (text != ""){
+			 loadMoreButton.Click();
+			 delaySecond(10)
+		 }
 	}
 }
 func loopLoadMore(page *agouti.Page){
 	clickLoadMore(page)
-	delaySecond(2)
 	loadMore := page.Find("body > div.page > div.content > div > section > section > div > table > tbody > tr.replace-with-show-more > td > div > a")
 	if (loadMore != nil) {
 		  text, _ := loadMore.Text()
-			fmt.Println("loadMore Text:", text)
+			fmt.Println("loadMore Text:", text)			
 			if (text != ""){
 			   loopLoadMore(page);
 			}
